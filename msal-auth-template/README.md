@@ -65,11 +65,33 @@ npm run dev
 Create a `.env` file in the project root using the example below:
 
 ```env
-VITE_AZURE_CLIENT_ID=your-client-id-here
-VITE_AZURE_TENANT_ID=your-tenant-id-here
-VITE_AZURE_AUTHORITY=https://login.microsoftonline.com/your-tenant-id
-VITE_AZURE_REDIRECT_URI=http://localhost:5173
-VITE_AZURE_POST_LOGOUT_REDIRECT_URI=http://localhost:5173
+# --- Auth Mode ---
+# Options: 'b2b' or 'b2c'
+VITE_AUTH_MODE=b2c
+
+# --- Common MSAL Config ---
+VITE_REDIRECT_URI=http://localhost:5173/tppsstudio
+VITE_POST_LOGOUT_REDIRECT_URI=http://localhost:5173/
+
+# --- Azure AD B2C ---
+VITE_B2C_CLIENT_ID=your-b2c-client-id
+VITE_B2C_TENANT_NAME=yourtenant.onmicrosoft.com
+VITE_B2C_SIGNIN_POLICY=B2C_1_signin
+VITE_B2C_AUTHORITY=https://yourtenant.b2clogin.com/yourtenant.onmicrosoft.com/B2C_1_signin
+VITE_B2C_KNOWN_AUTHORITY=yourtenant.b2clogin.com
+VITE_B2C_SCOPES=https://yourtenant.onmicrosoft.com/your-client-id/your-scope-name
+
+# --- Azure AD B2B ---
+VITE_B2B_CLIENT_ID=your-b2b-client-id
+VITE_B2B_TENANT_ID=your-b2b-tenant-id
+VITE_B2B_AUTHORITY=https://login.microsoftonline.com/your-b2b-tenant-id
+
+# --- APIs (Optional) ---
+VITE_API_ADMIN=https://your-api-domain.com/api
+VITE_API_PROCESS=https://your-process-api.com/api
+VITE_API_ADMIN_USERS=https://your-user-admin-api.com/api
+
+# Template
 ```
 
 > ✅ Replace `your-client-id-here` and `your-tenant-id-here` with your actual values from the Azure App Registration.
