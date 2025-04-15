@@ -1,12 +1,13 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from "../auth/PrivateRoute";
-import { Login, Protected, RedirectHandler } from '../pages';
+import { Home, Login, NotFound, Protected, RedirectHandler } from "@/pages";
 
 export const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route
                 path="/protected"
                 element={
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
                 }
             />
             <Route path="/tppsstudio" element={<RedirectHandler />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

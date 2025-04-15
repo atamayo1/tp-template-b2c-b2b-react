@@ -4,7 +4,7 @@ export const Home = () => {
     return (
         <Container>
             <Typography variant="h4" mt={4}>
-                Página pública: Home
+                Página privada: Home - Only for authenticated users
             </Typography>
         </Container>
     );

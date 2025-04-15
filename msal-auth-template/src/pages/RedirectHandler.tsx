@@ -6,7 +6,7 @@ export const RedirectHandler = () => {
     const isAuthenticated = useIsAuthenticated();
 
     return isAuthenticated ? (
-        <Navigate to="/protected" />
+        <Navigate to="/home" />
     ) : (
         <Container sx={{ textAlign: "center", mt: 10 }}>
             <CircularProgress />

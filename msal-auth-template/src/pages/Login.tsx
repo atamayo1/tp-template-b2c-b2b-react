@@ -1,11 +1,26 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { useMsal } from '@azure/msal-react';
+import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { loginRequestB2C } from '@/auth/authConfig.b2c';
 import { loginRequestB2B } from '@/auth/authConfig.b2b';
-import logo from '../assets/logo.svg';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { daysAgo } from '@/shared';
 
 export const Login = () => {
     const { instance } = useMsal();
+    const isAuthenticated = useIsAuthenticated();
+    const navigate = useNavigate();
+
+    const version = __APP_VERSION__;
+    const platform = navigator.platform || 'web';
+    const env = import.meta.env.MODE;
+    const buildDate = __BUILD_DATE__;
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/home', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleLoginPopup = (type: 'b2c' | 'b2b') => {
         const request = type === 'b2c' ? loginRequestB2C : loginRequestB2B;
@@ -20,7 +35,7 @@ export const Login = () => {
     return (
         <div className={'loginContainer'}>
             <div className={'leftSide'}>
-                <img src={logo} alt="Logo" className={'logo'} />
+                <div className={'logo'}>{'{Logo or product description here}'}</div>
 
                 <div className={'loginBox'}>
                     <Typography fontSize={14} fontWeight={600} variant="subtitle1" gutterBottom>
@@ -48,7 +63,7 @@ export const Login = () => {
                     </Typography>
                     <br />
                     <Typography fontSize={10} variant="caption" className={'version'}>
-                        Version: 1.9.1 - Web - develop - 12 days
+                        Version: {version} - {platform} - {env} - {daysAgo(buildDate)}
                     </Typography>
                 </div>
             </div>
