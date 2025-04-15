@@ -1,26 +1,64 @@
-import { useMsal } from "@azure/msal-react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from '@mui/material';
+import { useMsal } from '@azure/msal-react';
+import { loginRequestB2C } from '@/auth/authConfig.b2c';
+import { loginRequestB2B } from '@/auth/authConfig.b2b';
+import logo from '../assets/logo.svg';
 
 export const Login = () => {
     const { instance } = useMsal();
 
-    const loginPopup = () => {
-        instance.loginPopup().catch((e) => console.error(e));
+    const handleLoginPopup = (type: 'b2c' | 'b2b') => {
+        const request = type === 'b2c' ? loginRequestB2C : loginRequestB2B;
+        instance.loginPopup(request).catch(console.error);
     };
 
-    const loginRedirect = () => {
-        instance.loginRedirect().catch((e) => console.error(e));
+    const handleLoginRedirect = (type: 'b2c' | 'b2b') => {
+        const request = type === 'b2c' ? loginRequestB2C : loginRequestB2B;
+        instance.loginRedirect(request).catch(console.error);
     };
 
     return (
-        <Stack spacing={2} alignItems="center" justifyContent="center" mt={5}>
-            <Typography variant="h5">Sign in</Typography>
-            <Button variant="contained" color="secondary" onClick={loginPopup}>
-                Login with Popup
-            </Button>
-            <Button variant="outlined" color="secondary" onClick={loginRedirect}>
-                Login with Redirect
-            </Button>
-        </Stack>
+        <div className={'loginContainer'}>
+            <div className={'leftSide'}>
+                <img src={logo} alt="Logo" className={'logo'} />
+
+                <div className={'loginBox'}>
+                    <Typography fontSize={14} fontWeight={600} variant="subtitle1" gutterBottom>
+                        Sign in with your business account in
+                    </Typography>
+                    <br />
+                    <Stack spacing={1.5} className={'buttonStack'}>
+                        <Button variant="contained" color="primary" onClick={() => handleLoginPopup('b2c')}>
+                            B2C Login Popup
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={() => handleLoginRedirect('b2c')}>
+                            B2C Login Redirect
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={() => handleLoginPopup('b2b')}>
+                            B2B Login Popup
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={() => handleLoginRedirect('b2b')}>
+                            B2B Login Redirect
+                        </Button>
+                    </Stack>
+                    <br />
+                    <Typography fontSize={12} variant="body2" className={'legal'}>
+                        By clicking the 'login' button you agree to the{' '}
+                        <a href="/terms">terms and conditions</a> and the privacy policy.
+                    </Typography>
+                    <br />
+                    <Typography fontSize={10} variant="caption" className={'version'}>
+                        Version: 1.9.1 - Web - develop - 12 days
+                    </Typography>
+                </div>
+            </div>
+
+            <div className={'rightSide'}>
+                <Typography variant="h4" className={'productText'}>
+                    {'{Image or product description here}'}
+                </Typography>
+            </div>
+        </div>
     );
 };
+

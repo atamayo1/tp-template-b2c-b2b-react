@@ -1,0 +1,75 @@
+.loginContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.leftSide {
+    flex: 0.25;
+    background-color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 13.5em;
+    margin-top: 1rem;
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonStack {
+    width: 100%;
+    max-width: 300px;
+
+    button {
+        width: 100%;
+        background-color: #2e2e2e;
+        color: white;
+        text-transform: capitalize;
+
+        &:hover {
+            background-color: #1f1f1f;
+        }
+    }
+}
+
+.legal {
+    margin-top: 2rem;
+    text-align: center;
+
+    a {
+        color: #3f51b5;
+        text-decoration: underline;
+    }
+}
+
+.version {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    text-align: center;
+    color: #888;
+}
+
+.rightSide {
+    flex: 1;
+    background-color: #990099;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.productText {
+    font-size: 1.8rem;
+    font-weight: 500;
+}

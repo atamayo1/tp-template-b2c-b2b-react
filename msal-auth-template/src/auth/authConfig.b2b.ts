@@ -12,3 +12,7 @@ export const msalConfigB2B: Configuration = {
         storeAuthStateInCookie: false,
     },
 };
+
+export const loginRequestB2B = {
+    scopes: [import.meta.env.VITE_B2B_SCOPES], // ajusta según config B2B
+};

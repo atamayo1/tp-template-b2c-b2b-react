@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "../auth/PrivateRoute";
-import { Home, Login, Protected, RedirectHandler } from '../pages';
+import { Login, Protected, RedirectHandler } from '../pages';
 
 export const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route
                 path="/protected"
@@ -15,7 +15,7 @@ export const AppRoutes = () => {
                     </PrivateRoute>
                 }
             />
-            <Route path="/redirect" element={<RedirectHandler />} />
+            <Route path="/tppsstudio" element={<RedirectHandler />} />
         </Routes>
     );
 };

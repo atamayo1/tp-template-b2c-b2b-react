@@ -26,7 +26,7 @@ export const Navbar = () => {
                     MSAL Auth Template
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                    <Button color="inherit" component={Link} to="/">
+                    <Button color="inherit" component={Link} to="/protected">
                         Home
                     </Button>
                     <Button color="inherit" component={Link} to="/protected">
