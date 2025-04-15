@@ -15,5 +15,5 @@ export const msalConfigB2C: Configuration = {
 };
 
 export const loginRequestB2C = {
-    scopes: ["openid", "profile", "offline_access"], // ajusta según config B2C
+    scopes: ["openid", "profile", "offline_access"],
 };
